@@ -1,0 +1,18 @@
+Tortuga project 
+(c) 2011
+Piotr Dobrowolski
+
+ _  .----.
+('\/      \_,
+ `^uu----uu~`
+
+Dependencies:
+    ocaml
+    with graphics module
+
+How to run it?
+    Just type in your console:
+     $ make
+     $ ./bin/tortuga.native
+    or:
+     $ make tests
