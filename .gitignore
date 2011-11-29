@@ -5,3 +5,5 @@ bin
 .byte
 .native
 _build
+*.cmi
+*.cmx
