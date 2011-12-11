@@ -1,11 +1,10 @@
 (*
    Tortuga project
    (c) 2011 Piotr Dobrowolski
- *)
+*)
+
+open Interface;;
 
 let tortuga x = 
-  7
+  Interface.main_loop
 ;;
-
-print_string "dupa";
-print_newline ();;

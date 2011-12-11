@@ -1,17 +1,13 @@
-SRC=src/
-BIN=bin/
+LIBS=$(WITHGRAPHICS)
 
-tortuga: $(SRC)tortuga.ml
-	ocamlopt -I $(SRC) $(SRC)tortuga.ml -o $(BIN)tortuga
+SOURCES = src/interface/interface.ml src/tortuga.ml
 
-tests:
-	ocamlbuild -I src/ -tag pkg_oUnit tests.byte
-	@cp `readlink tests.byte` bin/tests.byte
-	@rm tests.byte
-	bin/tests.byte
-	@echo
+EXEC = Tortuga
 
-clean:
-	-rm -rf _build/ bin/*
+CUSTOM=-custom
 
-.PHONY: tortuga tests clean
+########################## Include the template here #####################
+include Makefile.ocaml
+##########################  Continue  customization  #####################
+
+CAMLC = ocamlc -g -I src/ -I src/interface/
