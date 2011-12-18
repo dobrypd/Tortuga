@@ -4,7 +4,9 @@
 *)
 
 open Interface;;
+open IterativeFunction;;
+open IOOperations;;
 
-let tortuga x = 
-  Interface.main_loop
+let tortuga =
+  Interface.main_loop IOOperations.openInitialGraphic IterativeFunction.load;;
 ;;

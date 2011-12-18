@@ -5,5 +5,5 @@
 
 module Interface:
 sig
-  val main_loop: unit -> unit;;
+  val main_loop : Graphics.image -> IterationWrapper -> unit;;
 end
