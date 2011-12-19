@@ -5,8 +5,12 @@
 
 open Interface;;
 open IterativeFunction;;
-open IOOperations;;
+open SomeTranslations;;
 
-let tortuga =
-  Interface.main_loop IOOperations.openInitialGraphic IterativeFunction.load;;
+module FinalFunctions = IterativeFunction (SomeTranslations);;
+
+let 
+  img = Graphics.create_image 100 100
+in
+  Interface.main_loop img (FinalFunctions.load ())
 ;;

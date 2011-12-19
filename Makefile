@@ -3,8 +3,8 @@ LIBS=$(WITHGRAPHICS)
 SRC=src/
 
 SOURCES = \
-$(SRC)logic/iterativeFunction.ml \
-$(SRC)logic/translations.ml \
+$(SRC)logic/SomeTranslations.ml \
+$(SRC)logic/IterativeFunction.ml \
 $(SRC)interface/iooperations.ml \
 $(SRC)interface/interface.ml \
 $(SRC)tortuga.ml

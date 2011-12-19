@@ -1,4 +1,14 @@
+src/logic/SomeTranslations.cmo: src/logic/SomeTranslations.cmi
+src/logic/SomeTranslations.cmx: src/logic/SomeTranslations.cmi
+src/logic/IterativeFunction.cmo: src/logic/IterativeFunction.cmi
+src/logic/IterativeFunction.cmx: src/logic/IterativeFunction.cmi
+src/interface/iooperations.cmo: src/interface/iooperations.cmi
+src/interface/iooperations.cmx: src/interface/iooperations.cmi
 src/interface/interface.cmo: src/interface/interface.cmi
 src/interface/interface.cmx: src/interface/interface.cmi
 src/tortuga.cmo:
 src/tortuga.cmx:
+src/logic/SomeTranslations.cmi:
+src/logic/IterativeFunction.cmi:
+src/interface/iooperations.cmi:
+src/interface/interface.cmi:

@@ -1,3 +1,9 @@
 src/interface/interface.ml
 src/interface/interface.mli
+src/interface/iooperations.ml
+src/interface/iooperations.mli
+src/logic/IterativeFunction.ml
+src/logic/IterativeFunction.mli
+src/logic/SomeTranslations.ml
+src/logic/SomeTranslations.mli
 src/tortuga.ml

@@ -4,5 +4,5 @@
 *)
 
 module IOOperations =
-struct
-end
+  struct
+  end;;
