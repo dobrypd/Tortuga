@@ -24,6 +24,5 @@ module IterativeFunction = functor (Tr: Translations) ->
         
     let load () =
       (* moze pozniej kreator funkcji np na podstawie pliku : parser *)
-      (*compose (iterate 10 (Tr.rotate 1.1)) Tr.inverte*)
-      Tr.rotate 1.2
+      compose (iterate 10 (compose (Tr.rotate 1.2) (Tr.translation (1.0 -1.0)) ) ) Tr.invert
   end;;
