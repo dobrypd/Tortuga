@@ -13,6 +13,4 @@ Dependencies:
 How to run it?
     Just type in your console:
      $ make
-     $ ./bin/tortuga
-    or:
-     $ make tests
+     $ ./Tortuga
