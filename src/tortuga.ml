@@ -9,8 +9,9 @@ open SomeTranslations;;
 
 module FinalFunctions = IterativeFunction (SomeTranslations);;
 
+Graphics.open_graph(" 800x600");
 let 
-  img = Graphics.create_image 100 100
+  img = Graphics.create_image 800 600
 in
   Interface.main_loop img (FinalFunctions.load ())
 ;;

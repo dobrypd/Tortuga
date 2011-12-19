@@ -1,6 +1,10 @@
 (*
    Tortuga project
    (c) 2011 Piotr Dobrowolski
+   co jeszcze:
+   przeksztalcenie zadane przez macierz
+   obroty, translacje i skalowanei
+   nieliniowe przeksztalcenia, plaszczyzny: rybie oko inwersja.
 *)
 
 module type Translations =

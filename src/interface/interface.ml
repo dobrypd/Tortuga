@@ -65,7 +65,6 @@ struct
         Graphics.draw_image img 0 0
 
   let main_loop (img:Graphics.image) (f:(Graphics.image -> Graphics.image)) =
-      Graphics.open_graph(" 800x600");
       skel init fend handle_char mouse exc img f
 
 end;;
