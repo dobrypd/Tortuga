@@ -60,7 +60,7 @@ struct
           Graphics.blit_image img 0 0 |
       ShowHelp -> 
         Graphics.moveto 50 50;
-        Graphics.draw_string "Tu bedzie pomoc" |
+        Graphics.draw_string "h - help, Space - next iteration, q - quit, Enter - continouse iterations" |
       _ ->
         Graphics.draw_image img 0 0
 

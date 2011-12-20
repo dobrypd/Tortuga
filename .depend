@@ -1,5 +1,3 @@
-src/logic/SomeTranslations.cmo: src/logic/SomeTranslations.cmi
-src/logic/SomeTranslations.cmx: src/logic/SomeTranslations.cmi
 src/logic/IterativeFunction.cmo: src/logic/IterativeFunction.cmi
 src/logic/IterativeFunction.cmx: src/logic/IterativeFunction.cmi
 src/interface/iooperations.cmo: src/interface/iooperations.cmi

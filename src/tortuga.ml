@@ -11,7 +11,8 @@ module FinalFunctions = IterativeFunction (SomeTranslations);;
 
 Graphics.open_graph(" 800x600");
 let 
-  img = Graphics.create_image 800 600
+  (*img = Graphics.create_image 800 600*)
+  img = jussieu
 in
   Interface.main_loop img (FinalFunctions.load ())
 ;;

@@ -6,7 +6,7 @@
 module SomeTranslations =
   struct
     
-    type vector = float -> float
+    type vector = float * float
       
     let invert (img:Graphics.image) =
       let from_rgb = (fun (c : Graphics.color) ->
@@ -27,9 +27,29 @@ module SomeTranslations =
           in
             Graphics.make_image inverted_matrix
       
-    let rotate (d:float) (img:Graphics.image) =
-      img (*TODO*)
-  
-    let translation (v:vector) (img:Graphics.image) =
-      img (*TODO*)
+      
+    let getPoint (matrix) (v:vector) =
+      match v with
+        (a, b) -> matrix.(a).(b)
+    
+    let initialF matrix (v:vector) =
+      let andOperation
+      in
+        match v with
+          (a, b) -> matrix.(b).(a) + 10
+ 
+    let processColorMap (img:Graphics.image) =
+      let matrix = Graphics.dump_image img
+      in
+        let newmatrix = color array array
+        in
+          begin
+            for i <- 1 to image.width do
+              for j <- 1 to image.height do
+                getPoint newmatrix (i, j) <- initialF matrix (i, j)  
+              done
+            done
+          end;
+          Graphics.make_image newmatrix
+        
   end;;

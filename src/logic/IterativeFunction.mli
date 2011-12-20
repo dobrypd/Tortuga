@@ -1,6 +1,7 @@
 (*
    Tortuga project
    (c) 2011 Piotr Dobrowolski
+
    co jeszcze:
    przeksztalcenie zadane przez macierz
    obroty, translacje i skalowanei
@@ -11,8 +12,7 @@ module type Translations =
   sig
     type vector
     val invert : Graphics.image -> Graphics.image
-    val rotate : float -> Graphics.image -> Graphics.image
-    val translation : vector -> Graphics.image -> Graphics.image
+    val processColorMap : Graphics.image -> Graphics.image
   end
 module IterativeFunction :
   functor (Tr : Translations) ->

@@ -7,8 +7,7 @@ module type Translations =
   sig
     type vector
     val invert : Graphics.image -> Graphics.image
-    val rotate : float -> Graphics.image -> Graphics.image
-    val translation : vector -> Graphics.image -> Graphics.image
+    val processColorMap : Graphics.image -> Graphics.image
   end;;
 
 module IterativeFunction = functor (Tr: Translations) ->
@@ -23,6 +22,5 @@ module IterativeFunction = functor (Tr: Translations) ->
       if n = 0 then id else compose (iterate (n-1) f) f
         
     let load () =
-      (* moze pozniej kreator funkcji np na podstawie pliku : parser *)
-      compose (iterate 10 (Tr.rotate 1.2) )  Tr.invert
+      Tr.processColorMap
   end;;
