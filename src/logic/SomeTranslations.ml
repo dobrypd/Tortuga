@@ -7,6 +7,7 @@ module SomeTranslations =
   struct
     
     type vector = float * float
+    type point = int * int
       
     let invert (img:Graphics.image) =
       let from_rgb = (fun (c : Graphics.color) ->
@@ -28,25 +29,26 @@ module SomeTranslations =
             Graphics.make_image inverted_matrix
       
       
-    let getPoint (matrix) (v:vector) =
+    let getPoint (matrix:Graphics.color array array) (v:point) =
       match v with
         (a, b) -> matrix.(a).(b)
     
-    let initialF matrix (v:vector) =
-      let andOperation
-      in
-        match v with
-          (a, b) -> matrix.(b).(a) + 10
+    let initialF matrix (v:point) =
+        (getPoint matrix v) * Random.int() (*add 10 to color in i, j*)
  
     let processColorMap (img:Graphics.image) =
       let matrix = Graphics.dump_image img
       in
-        let newmatrix = color array array
+      let width = Graphics.size_x ()
+      in
+      let height = Graphics.size_y ()
+      in
+        let newmatrix = Array.make_matrix width height 0
         in
           begin
-            for i <- 1 to image.width do
-              for j <- 1 to image.height do
-                getPoint newmatrix (i, j) <- initialF matrix (i, j)  
+            for j = 0 to height-300 do
+              for i = 0 to width-400 do
+                newmatrix.(i).(j) <- initialF matrix (i, j)  
               done
             done
           end;
