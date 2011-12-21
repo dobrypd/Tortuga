@@ -90,6 +90,7 @@ module SomeTranslations =
       
     let translate (i:functionImage) (v:point) (x:point) =
       i (pointMinus x v)
+      
     
     let loadDumpedImage matrix (x:point) =
       match x with
@@ -104,7 +105,38 @@ module SomeTranslations =
             and
               b_in_borders = min (max (b + 400) 0) (800-1)
             in
-              matrix.(a_in_borders).(b_in_borders) 
+              matrix.(a_in_borders).(b_in_borders)
+        
+    (*let sq (a:float) =
+      (log (a+.300.0)) *. 2.0*)
+        
+    let abs (a:float) =
+      if a >= 0.0 then
+        a
+      else
+        -.a
+    
+    let signum (a:float) =
+      if a >= 0.0 then
+        1.0
+      else
+        -.1.0
+    
+    let sq (a:float) =
+      (signum a) *. log (abs (a *. 100.0))
+    
+    let fish (a:float) =
+      (-.(a +. 15.0)*.(a +. 15.0)) -. 10.0
+    
+    let loadImageWithTrans (i:functionImage) (fx:(float->float)) (fy:(float->float)) (x:point) =
+      match x with
+        (afloat, bfloat) -> 
+          let 
+            a = (fx afloat)
+          and
+            b = (fy bfloat)
+          in
+            i (a, b)
       
     (* end of graphics functions implementation*)    
       
@@ -122,6 +154,9 @@ module SomeTranslations =
           'c' -> scale (circle (1.1, 4.4) 10.0) (8.7) (new_a, new_b)|
           'd' -> rotate (loadDumpedImage matrix) 0.1 (new_a, new_b)|
           'e' -> translate (loadDumpedImage matrix) (1.1, 1.1) (new_a, new_b)|
+          'f' -> circle (0.0, 0.0) 100.0 (new_a, new_b)|
+          'g' -> loadImageWithTrans (circle (0.0, 0.0) 12.0 ) sq sq (new_a, new_b)|
+          'i' -> loadImageWithTrans (loadDumpedImage matrix) fish fish (new_a, new_b)|
           _   -> loadDumpedImage matrix (new_a, new_b)
           
     (***************)
