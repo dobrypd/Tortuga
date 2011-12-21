@@ -1,13 +1,8 @@
-(*
-   Tortuga project
-   (c) 2011 Piotr Dobrowolski
-*)
-
 module Interface :
   sig
     exception End
-    exception ContinousSwitch
-    exception Next
+    exception Save
+    exception Next of char
     exception ShowHelp
     val skel :
       (unit -> 'a) ->
@@ -19,7 +14,8 @@ module Interface :
     val handle_char : char -> 'a
     val mouse : int -> int -> unit
     val exc :
-      exn -> Graphics.image -> (Graphics.image -> Graphics.image) -> unit
+      exn ->
+      Graphics.image -> (char -> Graphics.image -> Graphics.image) -> unit
     val main_loop :
-      Graphics.image -> (Graphics.image -> Graphics.image) -> unit
+      Graphics.image -> (char -> Graphics.image -> Graphics.image) -> unit
   end

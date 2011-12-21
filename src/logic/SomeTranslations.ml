@@ -14,7 +14,6 @@ module SomeTranslations =
     let yY (c:point) =
       match c with
         (_, b) -> b
-    
 
     let distance (p1:point) (p2:point) =
       let 
@@ -85,7 +84,52 @@ module SomeTranslations =
           i (to_carth (scale_radius (1.0/.s) (to_polar x) ) )
       in
         scale_h i s x
+    
+    let rotate (i:functionImage) (q:float) (x:point) =
+      i (to_carth (pointPlus (to_polar x) (0.0, -.q) ) )
       
+    let translate (i:functionImage) (v:point) (x:point) =
+      i (pointMinus x v)
+    
+    let loadDumpedImage matrix (x:point) =
+      match x with
+        (afloat, bfloat) -> 
+          let 
+            a = int_of_float afloat
+          and
+            b = int_of_float bfloat
+          in
+            let
+              a_in_borders = min (max (a + 300) 0) (600-1)
+            and
+              b_in_borders = min (max (b + 400) 0) (800-1)
+            in
+              matrix.(a_in_borders).(b_in_borders) 
+      
+    (* end of graphics functions implementation*)    
+      
+      
+    (*MAIN funciton*)
+        (* c -- is option *)
+    let initialF (c:char) matrix (v:(int*int)) =
+      match v with
+        (a, b) -> let new_a = (float_of_int a) -. 300.0
+                  and new_b = (float_of_int b) -. 400.0
+                  in
+        match c with (*without s, q and h*)
+          'a' -> scale (loadDumpedImage matrix) 2.0 (new_a, new_b)|
+          'b' -> circle (1.1, 2.2) 10.0 (new_a, new_b)|
+          'c' -> scale (circle (1.1, 4.4) 10.0) (8.7) (new_a, new_b)|
+          'd' -> rotate (loadDumpedImage matrix) 0.1 (new_a, new_b)|
+          'e' -> translate (loadDumpedImage matrix) (1.1, 1.1) (new_a, new_b)|
+          _   -> loadDumpedImage matrix (new_a, new_b)
+          
+    (***************)
+      
+      
+    (*implementation of imperative draving functions*)
+        
+    (*operations on matrix, pixels or color*)      
     let from_rgb = (fun (c : Graphics.color) ->
       let r = c / 65536 and g = c / 256 mod 256 and b = c mod 256
       in 
@@ -107,20 +151,9 @@ module SomeTranslations =
       inv_color(getColor matrix v)
       
       
-      
-    (*MAIN funciton*)
-    
-    let initialF matrix (v:(int*int)) =
-      match v with
-        (a, b) -> let new_a = (float_of_int a) -. 400.0
-                  and new_b = (float_of_int b) -. 300.0
-                  in
-          (scale ( circle (0.0, 0.0) 10.0 ) 10.0) (new_a, new_b)
-      
-      
-    (*implementation of imperative draving functions*)
+    (*functor implementation*)
  
-    let processColorMap (img:Graphics.image) =
+    let processColorMap (c:char) (img:Graphics.image) =
       let 
         matrix = Graphics.dump_image img
       and
@@ -134,7 +167,7 @@ module SomeTranslations =
           begin
             for i = 0 to height-1 do
               for j = 0 to width-1 do
-                newmatrix.(i).(j) <- initialF matrix (i, j)  
+                newmatrix.(i).(j) <- initialF c matrix (i, j)  
               done
             done
           end;

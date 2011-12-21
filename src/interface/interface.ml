@@ -7,8 +7,8 @@ module Interface =
 struct
 
   exception End
-  exception ContinousSwitch
-  exception Next
+  exception Save
+  exception Next of char
   exception ShowHelp
 
   let skel f_init f_end f_key f_mouse f_except img f =
@@ -25,7 +25,8 @@ struct
               if s.Graphics.button then 
                 f_mouse s.Graphics.mouse_x s.Graphics.mouse_y
         with
-          End -> raise End |
+          End -> raise End|
+          Next c -> f_except (Next c) img f|
           e -> f_except e img f
       done
     with
@@ -40,31 +41,30 @@ struct
 
   let handle_char c =
     match c with
-      '\n' -> raise ContinousSwitch |
-      ' ' -> raise Next |
+      's' -> raise Save |
       'q' -> raise End |
       'h' -> raise ShowHelp |
-      _ -> raise ShowHelp
+      _ -> raise (Next c)
 
   let mouse x y =
     Graphics.moveto x y
 
   let exc e img f= 
     match e with
-      ContinousSwitch ->
-        Graphics.draw_image img 0 0 |
-      Next ->
-        let newi = f img
+      Save ->
+        Graphics.blit_image img 0 0;
+        Graphics.draw_image img 0 0|
+      Next c->
+        let newi = f c img
         in
           Graphics.draw_image newi 0 0;
           Graphics.blit_image img 0 0 |
-      ShowHelp -> 
-        Graphics.moveto 50 50;
-        Graphics.draw_string "h - help, Space - next iteration, q - quit, Enter - continouse iterations" |
+      ShowHelp ->
+        Graphics.draw_string "q - quit, h - help : other keys - next iteration" |
       _ ->
         Graphics.draw_image img 0 0
 
-  let main_loop (img:Graphics.image) (f:(Graphics.image -> Graphics.image)) =
+  let main_loop (img:Graphics.image) (f:(char -> Graphics.image -> Graphics.image)) =
       skel init fend handle_char mouse exc img f
 
 end;;

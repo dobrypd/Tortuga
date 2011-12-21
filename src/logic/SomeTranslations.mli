@@ -12,13 +12,15 @@ module SomeTranslations :
     val to_carth : point -> float * float
     val circle : point -> float -> point -> Graphics.color
     val scale : functionImage -> float -> point -> Graphics.color
+    val loadDumpedImage : 'a array array -> point -> 'a
+    val initialF :
+      char -> Graphics.color array array -> int * int -> Graphics.color
     val from_rgb : Graphics.color -> int * int * int
     val inv_color : Graphics.color -> Graphics.color
     val getColor : Graphics.color array array -> int * int -> Graphics.color
     val random_pixels : Graphics.color array array -> point -> Graphics.color
     val invert_pixels :
       Graphics.color array array -> int * int -> Graphics.color
-    val initialF : 'a -> int * int -> Graphics.color
-    val processColorMap : Graphics.image -> Graphics.image
+    val processColorMap : char -> Graphics.image -> Graphics.image
     val invert : Graphics.image -> Graphics.image
   end
